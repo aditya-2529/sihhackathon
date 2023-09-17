@@ -1,5 +1,6 @@
 {
   "name": "Code-Crusaders",
+  "proxy":"http://localhost:10050/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 
 dotenv.config({path:"./config.env"});
 
-const port = process.env.PORT || 5000;
+const port =  10050;
 
 app.use(require("./route/auth"));
 if(process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging'){
