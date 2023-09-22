@@ -1,25 +1,21 @@
 const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
-const path = require("path");
 
 dotenv.config({path:"./config.env"});
 
-const port =  10050;
+const port = process.env.PORT || 5001;
 
-var a = __dirname.slice(__dirname.length-7, __dirname.length)
-__dirname = __dirname.replace(a,'/')
 app.use(require("./route/auth"));
-if(process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging'){
+// if(process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging'){
     app.use(express.static('frontend/build'));
     
+    const path = require("path");
     app.get('*', (req, res) => {
         res.sendFile(path.join(__dirname+ '/frontend/build/index.html'));
     })
-} 
-console.log(path.join(__dirname+ 'frontend/build/index.html'));
+// } 
 
-app.use(express.json());
 
 // app.post("/register",async (req,res) => {
 //     try{
