@@ -7,16 +7,19 @@ dotenv.config({path:"./config.env"});
 
 const port =  10050;
 
+var a = __dirname.slice(__dirname.length-7, __dirname.length)
+__dirname = __dirname.replace(a,'/')
 app.use(require("./route/auth"));
 if(process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging'){
     app.use(express.static('frontend/build'));
     
     app.get('*', (req, res) => {
-        res.sendFile(path.join(path.resolve("./") + 'frontend/build/index.html'));
+        res.sendFile(path.join(__dirname+ '/frontend/build/index.html'));
     })
 } 
+console.log(path.join(__dirname+ 'frontend/build/index.html'));
 
-// app.use(express.json());
+app.use(express.json());
 
 // app.post("/register",async (req,res) => {
 //     try{
